@@ -1,6 +1,6 @@
-# 🚀 Striver A2Z DSA - Pattern Problems (Java)
+# 🚀 DSA - Pattern Problems (Java)
 
-Welcome to my Java Patterns repository! This collection contains optimized, 0-based indexing solutions for the pattern problems from the **Striver A2Z DSA Sheet**. 
+Welcome to my Java Patterns repository! This collection contains optimized, 0-based indexing solutions for the pattern problems. 
 
 Understanding these patterns builds a strong foundation for nested loops, coordinate math, and matrix manipulations in Data Structures and Algorithms.
 
