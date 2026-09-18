@@ -25,12 +25,283 @@ Understanding these patterns builds a strong foundation for nested loops, coordi
 | **15** | **Reverse Alpha** | ABCD<br>ABC<br>AB<br>A | `for(int i=n-1; i>=0; i--)`<br>`  char c = 'A';` | Same logic as Pattern 14, but outer loop runs in reverse gear. |
 | **16** | **Symmetric Alpha** | A<br>BB<br>CCC<br>DDDD | `char c = 'A';`<br>`for(i=0; i<n; i++)`<br>  *Inner Loop prints `c`*<br>`  c++;` | `char` is initialized outside all loops and incremented *after* the inner loop finishes a row. |
 
-## 🛠️ Tech Stack & Concepts Used
-* **Language:** Java
-* **Concepts:** Nested Loops, 0-Based Indexing, Coordinate Geometry Math, ASCII Manipulations.
-* **Paradigm:** Algorithm Optimization (Minimizing loops, dynamic conditions).
+## 💻 Full Source Code (`Main.java`)
 
-## 🚀 How to Run
-1. Clone the repository to your local machine.
-2. Open `Main.java` in your favorite IDE (VS Code, IntelliJ, Eclipse).
-3. Run the file and input the value of `n` when prompted.
+Below is the complete, compiled Java code containing all 16 patterns with a menu-driven scanner input.
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter the value of n: ");
+        int n = sc.nextInt();
+        
+        System.out.println("\n--- Pattern 1: Square ---");
+        printSquare(n); 
+        
+        System.out.println("\n--- Pattern 2: Left Triangle ---");
+        printLeftTriangle(n);
+
+        System.out.println("\n--- Pattern 3: Number 123 ---");
+        printNumber123(n);
+
+        System.out.println("\n--- Pattern 4: Number 122333 ---");
+        printNumber122333(n);
+
+        System.out.println("\n--- Pattern 5: Inverse Star ---");
+        printInverseStar(n);
+
+        System.out.println("\n--- Pattern 6: Inverse Number ---");
+        printInverseNumber(n);
+
+        System.out.println("\n--- Pattern 7: Centered Pyramid ---");
+        printPyramid(n);
+
+        System.out.println("\n--- Pattern 8: Inverse Pyramid (Smart Way) ---");
+        printInversePyramid(n);
+
+        System.out.println("\n--- Pattern 9: Diamond ---");
+        printDiamond(n);
+        
+        System.out.println("\n--- Pattern 10: Rotate Right Pyramid ---");
+        printRotateRightPyramid(n);
+
+        System.out.println("\n--- Pattern 11: 10 Triangle ---");
+        print10Triangle(n);
+
+        System.out.println("\n--- Pattern 12: Dripstone ---");
+        printDripStone(n);
+
+        System.out.println("\n--- Pattern 13: Incremental 123 Triangle ---");
+        printIncremental123(n);
+
+        System.out.println("\n--- Pattern 14: Alphabets ---");
+        printAlphabets(n);
+
+        System.out.println("\n--- Pattern 15: Reverse Alphabet Pyramid ---");
+        reverseAlphabet(n);
+
+        System.out.println("\n--- Pattern 16: Symmetric Alphabet ---");
+        symmetricAlphabet(n);
+        
+        sc.close(); 
+    }
+    
+    // Pattern 1
+    public static void printSquare(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+    
+    // Pattern 2
+    public static void printLeftTriangle(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) { 
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 3
+    public static void printNumber123(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print((j + 1)); 
+            }
+            System.out.println(); 
+        }
+    }
+
+    // Pattern 4
+    public static void printNumber122333(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print((i + 1)); 
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 5
+    public static void printInverseStar(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 6
+    public static void printInverseNumber(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i; j++) {
+                System.out.print((j + 1));
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 7
+    public static void printPyramid(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < 2 * i + 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 8
+    public static void printInversePyramid(int n) {
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < 2 * i + 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 9
+    public static void printDiamond(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < 2 * i + 1; k++) {
+                System.out.print("*");
+            }
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }     
+            System.out.println();
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < 2 * i + 1; k++) {
+                System.out.print("*");
+            }
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }     
+            System.out.println();            
+        }
+    }
+
+    // Pattern 10
+    public static void printRotateRightPyramid(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (int i = 1; i < n; i++) {
+            for (int j = n; j > i; j--) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 11
+    public static void print10Triangle(int n) {
+        int start = 1;
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                start = 1;
+            } else {
+                start = 0;
+            }
+            for (int j = 0; j <= i; j++) {
+                System.out.print(start);
+                if (start == 1) {
+                    start = 0;
+                } else {
+                    start = 1;
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 12
+    public static void printDripStone(int n) {
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print(j + 1);
+            }
+            for (int k = 0; k < 2 * i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = n - i - 1; j >= 0; j--) {
+                System.out.print(j + 1);
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 13
+    public static void printIncremental123(int n) {
+        int num = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print(num + " ");
+                num++;
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 14
+    public static void printAlphabets(int n) {
+        for (int i = 0; i < n; i++) {
+            char ch = 'A';
+            for (int j = 0; j <= i; j++) {
+                System.out.print(ch);
+                ch++;
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 15
+    public static void reverseAlphabet(int n) {
+        for (int i = n - 1; i >= 0; i--) {
+            char c = 'A';
+            for (int j = 0; j <= i; j++) {
+                System.out.print(c);
+                c++;
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 16
+    public static void symmetricAlphabet(int n) {
+        char c = 'A';
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print(c);
+            }
+            c++;
+            System.out.println();
+        }
+    }
+}
