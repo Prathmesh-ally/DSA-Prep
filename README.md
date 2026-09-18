@@ -305,3 +305,13 @@ public class Main {
         }
     }
 }
+
+## 🛠️ Tech Stack & Concepts Used
+* **Language:** Java
+* **Concepts:** Nested Loops, 0-Based Indexing, Coordinate Geometry Math, ASCII Manipulations.
+* **Paradigm:** Algorithm Optimization (Minimizing loops, dynamic conditions).
+
+## 🚀 How to Run
+1. Clone the repository to your local machine.
+2. Open `Main.java` in your favorite IDE (VS Code, IntelliJ, Eclipse).
+3. Run the file and input the value of `n` when prompted.
