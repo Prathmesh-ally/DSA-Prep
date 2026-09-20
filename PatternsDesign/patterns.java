@@ -58,11 +58,17 @@ public class patterns {
         System.out.println("\n--- Pattern 17: Alphabet Pyramid ---");
         pyramidAlphabet(n);
         
-        System.out.println("\n--- Pattern 18: Reverse Alpha Right Triangle ---");
+        System.out.println("\n--- Pattern 18: Reverse Alpha Right Pyramid ---");
         reverseAlphaRightTriangle(n);
 
         System.out.println("\n--- Pattern 19: Hollow Diamond ---");
         hollowDiamond(n);
+        
+        System.out.println("\n--- Pattern 20: Butterfly ---");
+        butterfly(n);
+
+        System.out.println("\n--- Pattern 21: Hollow Square ---");
+        hollowSquare(n);
         
         sc.close(); 
     }
@@ -317,7 +323,6 @@ public class patterns {
     
     // Pattern 19
     public static void hollowDiamond(int n) {
-        // Upper Half
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= n - i - 1; j++) {
                 System.out.print("*");
@@ -331,7 +336,6 @@ public class patterns {
             System.out.println();
         }
         
-        // Lower Half
         for (int i = n - 1; i >= 0; i--) {    
             for (int j = 0; j <= n - i - 1; j++) {
                 System.out.print("*");
@@ -341,6 +345,49 @@ public class patterns {
             }
             for (int j = 0; j <= n - i - 1; j++) {
                 System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 20
+    public static void butterfly(int n) {
+        for (int i = n - 1; i >= 0; i--) {    
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        for (int i = 1; i < n; i++) { 
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) { 
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 21
+    public static void hollowSquare(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || j == 0 || i == n - 1 || j == n - 1) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
             }
             System.out.println();
         }
