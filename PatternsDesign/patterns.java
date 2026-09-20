@@ -54,6 +54,15 @@ public class patterns {
 
         System.out.println("\n--- Pattern 16: Symmetric Alphabet ---");
         symmetricAlphabet(n);
+
+        System.out.println("\n--- Pattern 17: Alphabet Pyramid ---");
+        pyramidAlphabet(n);
+        
+        System.out.println("\n--- Pattern 18: Reverse Alpha Right Triangle ---");
+        reverseAlphaRightTriangle(n);
+
+        System.out.println("\n--- Pattern 19: Hollow Diamond ---");
+        hollowDiamond(n);
         
         sc.close(); 
     }
@@ -269,6 +278,70 @@ public class patterns {
                 System.out.print(c);
             }
             c++;
+            System.out.println();
+        }
+    }
+
+    // Pattern 17
+    public static void pyramidAlphabet(int n) {
+        for (int i = 0; i <= n - 1; i++) {
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            char ch = 'A';
+            int breakpoint = (2 * i + 1) / 2;
+            for (int k = 1; k <= 2 * i + 1; k++) {
+                System.out.print(ch);
+                if (k <= breakpoint) {
+                    ch++;
+                } else {
+                    ch--;
+                }
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 18 
+    public static void reverseAlphaRightTriangle(int n) {
+        for (int i = 0; i <= n; i++) {
+            for (char ch = (char)('E' - i); ch <= 'E'; ch++) {
+                System.out.print(ch);
+            }
+            System.out.println();
+        }
+    }
+    
+    // Pattern 19
+    public static void hollowDiamond(int n) {
+        // Upper Half
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) { 
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        
+        // Lower Half
+        for (int i = n - 1; i >= 0; i--) {    
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
             System.out.println();
         }
     }
