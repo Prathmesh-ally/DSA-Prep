@@ -27,10 +27,12 @@ Understanding these patterns builds a strong foundation for nested loops, coordi
 | **17** | **Alphabet Pyramid** | &nbsp;&nbsp;&nbsp;A<br>&nbsp;&nbsp;ABA<br>&nbsp;ABCBA<br>ABCDCBA | `int bp = (2*i+1)/2;`<br>`if(k <= bp) ch++;`<br>`else ch--;` | Print spaces, then characters. Increment `char` until the midpoint (breakpoint), then decrement. |
 | **18** | **Reverse Alpha Triangle** | E<br>DE<br>CDE<br>BCDE<br>ABCDE | `char start = (char)('E'-i);`<br>`for(ch = start; ch <= 'E'; ch++)` | Use ASCII math to determine the starting character for each row, then print up to the fixed end character. |
 | **19** | **Hollow Diamond** | &#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42; | `for(j=0; j<n-i; j++) print("*");`<br>`for(k=0; k<2*i; k++) print(" ");` | Combines an upper loop (`0` to `n-1`) and a lower loop (`n-1` to `0`). Each line prints Stars, Spaces, Stars. |
+| **20** | **Butterfly** | &#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42; | `for(i=n-1; i>=0; i--)`<br>*Top Half*<br>`for(i=1; i<n; i++)`<br>*Bottom Half* | 2 outer loops. Top half builds increasing stars (using reverse `i`), bottom half mirrors it. Each line is Stars, Spaces, Stars. |
+| **21** | **Hollow Square** | &#42;&#42;&#42;&#42;<br>&#42;&nbsp;&nbsp;&#42;<br>&#42;&nbsp;&nbsp;&#42;<br>&#42;&#42;&#42;&#42; | `if(i==0 \|\| j==0 \|\| i==n-1 \|\| j==n-1)`<br>`  print("*");`<br>`else print(" ");` | Uses logical `OR (||)` operator to print stars only on the 4 boundaries (top/bottom rows, left/right columns). Prints space everywhere else. |
 
 ## 💻 Full Source Code (`Main.java`)
 
-Below is the complete, compiled Java code containing all 19 patterns with a menu-driven scanner input.
+Below is the complete, compiled Java code containing all 21 patterns with a menu-driven scanner input.
 
 ```java
 import java.util.Scanner;
@@ -93,11 +95,17 @@ public class Main {
         System.out.println("\n--- Pattern 17: Alphabet Pyramid ---");
         pyramidAlphabet(n);
         
-        System.out.println("\n--- Pattern 18: Reverse Alpha Right Triangle ---");
+        System.out.println("\n--- Pattern 18: Reverse Alpha Right Pyramid ---");
         reverseAlphaRightTriangle(n);
 
         System.out.println("\n--- Pattern 19: Hollow Diamond ---");
         hollowDiamond(n);
+        
+        System.out.println("\n--- Pattern 20: Butterfly ---");
+        butterfly(n);
+
+        System.out.println("\n--- Pattern 21: Hollow Square ---");
+        hollowSquare(n);
         
         sc.close(); 
     }
@@ -352,7 +360,6 @@ public class Main {
     
     // Pattern 19
     public static void hollowDiamond(int n) {
-        // Upper Half
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= n - i - 1; j++) {
                 System.out.print("*");
@@ -366,7 +373,6 @@ public class Main {
             System.out.println();
         }
         
-        // Lower Half
         for (int i = n - 1; i >= 0; i--) {    
             for (int j = 0; j <= n - i - 1; j++) {
                 System.out.print("*");
@@ -376,6 +382,49 @@ public class Main {
             }
             for (int j = 0; j <= n - i - 1; j++) {
                 System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 20
+    public static void butterfly(int n) {
+        for (int i = n - 1; i >= 0; i--) {    
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        for (int i = 1; i < n; i++) { 
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) { 
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 21
+    public static void hollowSquare(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || j == 0 || i == n - 1 || j == n - 1) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
             }
             System.out.println();
         }
