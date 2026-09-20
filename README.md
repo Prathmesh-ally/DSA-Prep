@@ -24,10 +24,13 @@ Understanding these patterns builds a strong foundation for nested loops, coordi
 | **14** | **Alphabets** | A<br>AB<br>ABC<br>ABCD | `char ch = 'A';`<br>`for(j=0; j<=i; j++)`<br>`  print(ch); ch++;` | Reset `char` at the start of every new row (inside outer loop). |
 | **15** | **Reverse Alpha** | ABCD<br>ABC<br>AB<br>A | `for(int i=n-1; i>=0; i--)`<br>`  char c = 'A';` | Same logic as Pattern 14, but outer loop runs in reverse gear. |
 | **16** | **Symmetric Alpha** | A<br>BB<br>CCC<br>DDDD | `char c = 'A';`<br>`for(i=0; i<n; i++)`<br>  *Inner Loop prints `c`*<br>`  c++;` | `char` is initialized outside all loops and incremented *after* the inner loop finishes a row. |
+| **17** | **Alphabet Pyramid** | &nbsp;&nbsp;&nbsp;A<br>&nbsp;&nbsp;ABA<br>&nbsp;ABCBA<br>ABCDCBA | `int bp = (2*i+1)/2;`<br>`if(k <= bp) ch++;`<br>`else ch--;` | Print spaces, then characters. Increment `char` until the midpoint (breakpoint), then decrement. |
+| **18** | **Reverse Alpha Triangle** | E<br>DE<br>CDE<br>BCDE<br>ABCDE | `char start = (char)('E'-i);`<br>`for(ch = start; ch <= 'E'; ch++)` | Use ASCII math to determine the starting character for each row, then print up to the fixed end character. |
+| **19** | **Hollow Diamond** | &#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42; | `for(j=0; j<n-i; j++) print("*");`<br>`for(k=0; k<2*i; k++) print(" ");` | Combines an upper loop (`0` to `n-1`) and a lower loop (`n-1` to `0`). Each line prints Stars, Spaces, Stars. |
 
 ## 💻 Full Source Code (`Main.java`)
 
-Below is the complete, compiled Java code containing all 16 patterns with a menu-driven scanner input.
+Below is the complete, compiled Java code containing all 19 patterns with a menu-driven scanner input.
 
 ```java
 import java.util.Scanner;
@@ -86,6 +89,15 @@ public class Main {
 
         System.out.println("\n--- Pattern 16: Symmetric Alphabet ---");
         symmetricAlphabet(n);
+
+        System.out.println("\n--- Pattern 17: Alphabet Pyramid ---");
+        pyramidAlphabet(n);
+        
+        System.out.println("\n--- Pattern 18: Reverse Alpha Right Triangle ---");
+        reverseAlphaRightTriangle(n);
+
+        System.out.println("\n--- Pattern 19: Hollow Diamond ---");
+        hollowDiamond(n);
         
         sc.close(); 
     }
@@ -301,6 +313,70 @@ public class Main {
                 System.out.print(c);
             }
             c++;
+            System.out.println();
+        }
+    }
+
+    // Pattern 17
+    public static void pyramidAlphabet(int n) {
+        for (int i = 0; i <= n - 1; i++) {
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            char ch = 'A';
+            int breakpoint = (2 * i + 1) / 2;
+            for (int k = 1; k <= 2 * i + 1; k++) {
+                System.out.print(ch);
+                if (k <= breakpoint) {
+                    ch++;
+                } else {
+                    ch--;
+                }
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern 18 
+    public static void reverseAlphaRightTriangle(int n) {
+        for (int i = 0; i < n; i++) {
+            for (char ch = (char)('E' - i); ch <= 'E'; ch++) {
+                System.out.print(ch);
+            }
+            System.out.println();
+        }
+    }
+    
+    // Pattern 19
+    public static void hollowDiamond(int n) {
+        // Upper Half
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) { 
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        
+        // Lower Half
+        for (int i = n - 1; i >= 0; i--) {    
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < 2 * i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= n - i - 1; j++) {
+                System.out.print("*");
+            }
             System.out.println();
         }
     }
